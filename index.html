@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya, My Little Princess 🥺</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #fff0f3;
+            color: #4a4a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .icon-box {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 22px;
+            color: #d81b60;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .btn {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            width: 100%;
+        }
+        .btn:active {
+            transform: scale(0.95);
+            background: #c2185b;
+        }
+        /* Letter style */
+        .letter-box {
+            background: #fff5f8;
+            border: 2px dashed #ff80ab;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: left;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 25px;
+            max-height: 220px;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+        /* Progress Bar */
+        .progress-bar-container {
+            background: #fce4ec;
+            border-radius: 20px;
+            height: 20px;
+            width: 100%;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            background: #e91e63;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 20px;
+        }
+        /* Gift Grid */
+        .gift-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .gift-item {
+            background: #fff5f8;
+            border: 1px solid #ff80ab;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: left;
+            font-size: 13px;
+        }
+        .gift-item strong {
+            color: #d81b60;
+            display: block;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Step 1: Intro -->
+        <div class="step active" id="step-1">
+            <div class="icon-box">🌍💔</div>
+            <h1>Maafin Aku Ya, My Little Princess</h1>
+            <p>Meskipun kita jauh (LDR), aku tahu kamu pasti kesal dan kangen karena aku sibuk & jarang kabar selama 2 hari ini. Dengarkan penjelasanku ya? ❤️</p>
+            <button class="btn" onclick="nextStep(2)">Dengarkan Hatiku ❤️</button>
+        </div>
+
+        <!-- Step 2: Letter -->
+        <div class="step" id="step-2">
+            <div class="icon-box">💌</div>
+            <h1>Surat LDR Untukmu</h1>
+            <div class="letter-box">
+                <strong>Untuk My Little Princess Tercinta 👑,</strong><br><br>
+                Aku benar-benar minta maaf ya karena selama 2 hari ini aku sibuk banget sampai tidak sempat berkabar sama kamu. Aku tahu berhubungan jarak jauh itu tidak mudah, dan hilangnya kabarku pasti bikin kamu khawatir, sedih, atau merasa diabaikan.<br><br>
+                Jujur, walaupun kita jauh dan aku lagi sibuk, kamu selalu ada di pikiranku. Aku kangen banget sama kamu. Tolong maafin aku ya, princess? Aku janji bakal bayar waktu yang hilang ini! 🥺💕
+            </div>
+            <button class="btn" onclick="nextStep(3)">Lanjut 🤍</button>
+        </div>
+
+        <!-- Step 3: Forgiveness Meter -->
+        <div class="step" id="step-3">
+            <div class="icon-box">💖</div>
+            <h1>Meteran Maaf LDR</h1>
+            <p id="meter-text">0% Dimaafkan<br><small>Ketuk hati di bawah untuk memaafkan aku!</small></p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <button class="btn" id="heartBtn" onclick="increaseForgiveness()">❤️ Ketuk untuk Memaafkan</button>
+        </div>
+
+        <!-- Step 4: Bribes / Perks -->
+        <div class="step" id="step-4">
+            <div class="icon-box">🎁</div>
+            <h1>Voucher Permintaan Maaf (LDR Edition)</h1>
+            <div class="gift-grid">
+                <div class="gift-item">
+                    <strong>📱 Long Virtual Date Pass</strong>
+                    Berlaku untuk Call / Video Call / Nonton bareng online seharian tanpa gangguan!
+                </div>
+                <div class="gift-item">
+                    <strong>🧋 Special Food Delivery Treat</strong>
+                    Aku bakal pesanin makanan, minuman manis, atau boba kesukaanmu lewat Grab/Gojek langsung ke rumahmu!
+                </div>
+            </div>
+            <button class="btn" onclick="nextStep(5)">Terima Perjanjian Damai ✨</button>
+        </div>
+
+        <!-- Step 5: Outro / Final -->
+        <div class="step" id="step-5">
+            <div class="icon-box">👑✨</div>
+            <h1>Perjanjian Damai Ditandatangani!</h1>
+            <p>Terima kasih sudah memaafkan aku, My Little Princess. Jarak tidak akan pernah mengurangi rasa sayangku padamu! 💛</p>
+            <button class="btn" onclick="resetSteps()">Ulangi dari Awal 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let forgivenessScore = 0;
+
+        function nextStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            currentStep = step;
+            document.getElementById(`step-${currentStep}`).classList.add('active');
+        }
+
+        function increaseForgiveness() {
+            forgivenessScore += 20;
+            if (forgivenessScore > 100) forgivenessScore = 100;
+            
+            document.getElementById('progressBar').style.width = forgivenessScore + '%';
+            
+            if (forgivenessScore < 50) {
+                document.getElementById('meter-text').innerHTML = `${forgivenessScore}% Dimaafkan<br><small>Masih ngambek ya? Ayo ketuk lagi...</small>`;
+            } else if (forgivenessScore < 100) {
+                document.getElementById('meter-text').innerHTML = `${forgivenessScore}% Dimaafkan<br><small>Sedikit lagi princess-ku senyum!</small>`;
+            } else {
+                document.getElementById('meter-text').innerHTML = `100% Dimaafkan! Yay! 🥰<br><small>Terima kasih sudah memaafkan aku, Princess!</small>`;
+                document.getElementById('heartBtn').innerText = "Ambil Hadiahmu 🎁";
+                document.getElementById('heartBtn').setAttribute("onclick", "nextStep(4)");
+            }
+        }
+
+        function resetSteps() {
+            forgivenessScore = 0;
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('meter-text').innerHTML = `0% Dimaafkan<br><small>Ketuk hati di bawah untuk memaafkan aku!</small>`;
+            document.getElementById('heartBtn').innerText = "❤️ Ketuk untuk Memaafkan";
+            document.getElementById('heartBtn').setAttribute("onclick", "increaseForgiveness()");
+            nextStep(1);
+        }
+    </script>
+</body>
+  </html>
+  
